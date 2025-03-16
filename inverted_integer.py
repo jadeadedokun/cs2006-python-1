@@ -70,27 +70,40 @@ class InvertedInteger:
     
     # function to check whether values hold the commutative value of multiplication
     @staticmethod
-    def __has_commutative_inverted_multiplication__(n,alpha):
+    def __has_commutative_inverted_multiplication__(n, alpha):
         for x in range(n):
             for y in range(n):
-                    result = (x + y - alpha * x * y) % n
-                    if result != ((y + x - alpha * y * x) % n):
+                result = (x + y - alpha * x * y) % n
+                if result != ((y + x - alpha * y * x) % n):
+                    return False
+        return True
+
+    # function to check whether values hold the commutative value of addition
+    @staticmethod
+    def __has_commutative_inverted_addition__(n, alpha):
+        for x in range(n):
+            for y in range(n):
+                    result = (x - y) % n
+                    if result != ((y - x) % n):
                         return False
         return True
     
-    # function to find commutative pairs where modulus is between 1 and 50 and the multiplier is less than modulus
+    # function to find commutative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
     def find_commutative_pairs(self):
-        non_commutative_pairs = []
-        checked_pairs = set()
-        
-        # checks for commutative pairs between 1 and 50 adds them to a list
+        mult_non_commutative_pairs = []
+        add_non_commutative_pairs = []
+
+        # checks for commutative pairs between 1 and 50 using both multiplication and addition
         for i in range(1, 51):
             for j in range(0, i):
-                # ensures that reverse pairs with the same values will not be re-checked
-                    if (i,j) not in checked_pairs:
-                        checked_pairs.add((i,j))
-                        if not self.__has_commutative_inverted_multiplication__(i, j):
-                            non_commutative_pairs.append((i,j))
-        if not non_commutative_pairs:
+                if not self.__has_commutative_inverted_multiplication__(i, j):
+                    mult_non_commutative_pairs.append((i, j))
+                if not self.__has_commutative_inverted_addition__(i, j):
+                    add_non_commutative_pairs.append((i, j))
+                    
+        if not mult_non_commutative_pairs:
             print("All pairs between 1 and 50 hold the commutative property of multiplication.")
-        return non_commutative_pairs
+        if not add_non_commutative_pairs:
+            print("All pairs between 1 and 50 hold the commutative property of addition.")
+                
+        return mult_non_commutative_pairs, add_non_commutative_pairs

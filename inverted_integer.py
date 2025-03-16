@@ -49,20 +49,48 @@ class InvertedInteger:
         
     # function check for each value from 0 to the modulus with a fixed multiplier and modulus whether x multiplied by itself gives x
     @staticmethod
-    def __has_all_idempotents_property__(mod, mult):
-        for x in range(mod):
-            result = (x + x - mult * x * x) % mod
+    def __has_all_idempotents_property__(n, alpha):
+        for x in range(n):
+            result = (x + x - alpha * x * x) % n
             if result != x:
                 return False
         return True
         
     # function to find idempotent pairs where modulus is between 1 and 50 and the multiplier is less than modulus
     def find_idempotent_pairs(self):
-        # establishes a store for pairs that match the specified condition and adds them in to it
+        # establishes a store for pairs that match the specified condition and adds them into it
         idempotent_pairs = []
-                
+        
+        # checks for idempotent pairs between 1 and 50 adds them to a list
         for i in range(1, 51):
             for j in range(0, i):
-                if InvertedInteger.__has_all_idempotents_property__(i, j):
+                if self.__has_all_idempotents_property__(i, j):
                     idempotent_pairs.append((i, j))
         return idempotent_pairs
+    
+    # function to check whether values hold the commutative value of multiplication
+    @staticmethod
+    def __has_commutative_inverted_multiplication__(n,alpha):
+        for x in range(n):
+            for y in range(n):
+                    result = (x + y - alpha * x * y) % n
+                    if result != ((y + x - alpha * y * x) % n):
+                        return False
+        return True
+    
+    # function to find commutative pairs where modulus is between 1 and 50 and the multiplier is less than modulus
+    def find_commutative_pairs(self):
+        non_commutative_pairs = []
+        checked_pairs = set()
+        
+        # checks for commutative pairs between 1 and 50 adds them to a list
+        for i in range(1, 51):
+            for j in range(0, i):
+                # ensures that reverse pairs with the same values will not be re-checked
+                    if (i,j) not in checked_pairs:
+                        checked_pairs.add((i,j))
+                        if not self.__has_commutative_inverted_multiplication__(i, j):
+                            non_commutative_pairs.append((i,j))
+        if not non_commutative_pairs:
+            print("All pairs between 1 and 50 hold the commutative property of multiplication.")
+        return non_commutative_pairs

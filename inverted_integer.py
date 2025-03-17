@@ -11,6 +11,12 @@ class InvertedInteger:
     # function to overwrite "print"
     def __str__(self):
         return "<" + str(self.object) + " mod " + str(self.modulus) + " | " + str(self.multiplier) + " >"
+    
+    # function to print relevant pairs from a list
+    @staticmethod
+    def print_values(list_of_results):
+        for result in list_of_results:
+            print(result)
         
     # function to check that the modulus is above 0 and an integer
     @staticmethod
@@ -41,7 +47,7 @@ class InvertedInteger:
         return None
         
     # function to find idempotent pairs where modulus is between 1 and 50 and the multiplier is less than modulus
-    def find_idempotent_pairs():
+    def find_idempotent_pairs(self):
         idempotent_pairs = []
         
         # checks for idempotent pairs between 1 and 50 adds them to a list
@@ -49,50 +55,61 @@ class InvertedInteger:
             for alpha in range(n):
                 if ac.has_idempotent_property(n, alpha):
                     idempotent_pairs.append((n, alpha))
-            print("These are the pairs for which idempotency holds:")
-            for pair in idempotent_pairs:
-                print(pair)
+        print("These are the pairs for which idempotency holds:")
+        self.print_values(idempotent_pairs)
         return idempotent_pairs
     
     # function to find commutative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
-    def find_commutative_pairs():
+    def find_commutative_pairs(self):
         mult_non_commutative_pairs = []
         add_non_commutative_pairs = []
+        checked_pairs = set()
+        
 
         # checks for commutative pairs between 1 and 50 using both multiplication and addition
         for n in range(1, 51):
             for alpha in range(n):
-                if not ac.has_commutative_multiplication(n, alpha):
-                    mult_non_commutative_pairs.append((n, alpha))
-                if not ac.has_commutative_addition(n, alpha):
-                    add_non_commutative_pairs.append((n, alpha))
+                if (n,alpha) not in checked_pairs:
+                    checked_pairs.add((n,alpha))
+                    if not ac.has_commutative_multiplication(n, alpha):
+                        mult_non_commutative_pairs.append((n, alpha))
+                    if not ac.has_commutative_addition(n, alpha):
+                        add_non_commutative_pairs.append((n, alpha))
                     
         if not mult_non_commutative_pairs:
             print("All pairs between 1 and 50 hold the commutative property of multiplication.")
         else:
             print("These are the non-commutative multiplication pairs:")
-            for pair in mult_non_commutative_pairs:
-                print(pair)
+            self.print_values(mult_non_commutative_pairs)
                 
         if not add_non_commutative_pairs:
             print("All pairs between 1 and 50 hold the commutative property of addition.")
         else:
             print("These are the non-commutative addition pairs:")
-            for pair in add_non_commutative_pairs:
-                print(pair)
+            self.print_values(add_non_commutative_pairs)
                 
         return mult_non_commutative_pairs, add_non_commutative_pairs
 
     # function to find associative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
-    def find_associative_pairs():
-        associative_pairs = []
+    def find_associative_pairs(self):
+        mult_associative_pairs = []
+        add_associative_pairs = []
+        checked_pairs = set()
         
         # checks for associative pairs between 1 and 50 adds them to a list
-        for n in range(1, 51):
+        for n in range(1, 21):
             for alpha in range(n):
-                if ac.has_associative_inverted_multiplication(n, alpha):
-                    associative_pairs.append((n, alpha))
-            print("These are the pairs for which associativity holds:")
-            for pair in associative_pairs:
-                print(pair)
-        return associative_pairs
+                if (n,alpha) not in checked_pairs:
+                    checked_pairs.add((n,alpha))
+                    if ac.has_associative_inverted_multiplication(n, alpha):
+                        mult_associative_pairs.append((n, alpha))
+                    if ac.has_associative_inverted_addition(n,alpha):
+                        add_associative_pairs.append((n,alpha))
+
+        print("These are the pairs for which addition associativity holds:")
+        self.print_values(add_associative_pairs)
+        print("These are the pairs for which multiplication associativity holds:")
+        self.print_values(mult_associative_pairs)
+
+        return mult_associative_pairs, add_associative_pairs
+

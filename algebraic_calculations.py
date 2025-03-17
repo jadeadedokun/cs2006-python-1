@@ -38,3 +38,18 @@ def has_associative_inverted_multiplication(n,alpha):
                 if result1 != result2:
                     return False
     return True
+
+def has_associative_inverted_addition(n,alpha):
+    # function to perform addition and check for associativity
+    for x in range(n):
+        for y in range(n):
+            for z in range(n):
+                x_and_y_add_result = (x - y) % n
+                result1 = (x_and_y_add_result - z) % n
+                
+                y_and_z_add_result = (y - z) % n
+                result2 = (x - y_and_z_add_result) % n
+                
+                if result1 != result2:
+                    return False
+    return True

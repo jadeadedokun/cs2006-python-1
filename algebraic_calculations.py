@@ -23,3 +23,18 @@ def has_commutative_addition(n, alpha):
             if result != ((y - x) % n):
                 return False
     return True
+
+def has_associative_inverted_multiplication(n,alpha):
+    # function to perform multiplication and check for associativity
+    for x in range(n):
+        for y in range(n):
+            for z in range(n):
+                x_and_y_mult_result = (x + y - alpha * x * y) % n
+                result1 = (x_and_y_mult_result + z - alpha * x_and_y_mult_result * z) % n
+                
+                y_and_z_mult_result = (y + z - alpha * y * z) % n
+                result2 = (x + y_and_z_mult_result - alpha * x * y_and_z_mult_result) % n
+                
+                if result1 != result2:
+                    return False
+    return True

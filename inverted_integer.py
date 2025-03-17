@@ -1,4 +1,4 @@
-from algebraic_calculations import has_idempotent_property, has_commutative_addition, has_commutative_multiplication
+import algebraic_calculations as ac
 
 class InvertedInteger:
     # function to define the components of the expression
@@ -41,31 +41,31 @@ class InvertedInteger:
         return None
         
     # function to find idempotent pairs where modulus is between 1 and 50 and the multiplier is less than modulus
-    def find_idempotent_pairs(self):
+    def find_idempotent_pairs():
         idempotent_pairs = []
         
         # checks for idempotent pairs between 1 and 50 adds them to a list
-        for i in range(1, 51):
-            for j in range(0, i):
-                if has_idempotent_property(i, j):
-                    idempotent_pairs.append((i, j))
+        for n in range(1, 51):
+            for alpha in range(n):
+                if ac.has_idempotent_property(n, alpha):
+                    idempotent_pairs.append((n, alpha))
             print("These are the pairs for which idempotency holds:")
             for pair in idempotent_pairs:
                 print(pair)
         return idempotent_pairs
     
     # function to find commutative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
-    def find_commutative_pairs(self):
+    def find_commutative_pairs():
         mult_non_commutative_pairs = []
         add_non_commutative_pairs = []
 
         # checks for commutative pairs between 1 and 50 using both multiplication and addition
-        for i in range(1, 51):
-            for j in range(0, i):
-                if not has_commutative_multiplication(i, j):
-                    mult_non_commutative_pairs.append((i, j))
-                if not has_commutative_addition(i, j):
-                    add_non_commutative_pairs.append((i, j))
+        for n in range(1, 51):
+            for alpha in range(n):
+                if not ac.has_commutative_multiplication(n, alpha):
+                    mult_non_commutative_pairs.append((n, alpha))
+                if not ac.has_commutative_addition(n, alpha):
+                    add_non_commutative_pairs.append((n, alpha))
                     
         if not mult_non_commutative_pairs:
             print("All pairs between 1 and 50 hold the commutative property of multiplication.")
@@ -82,3 +82,17 @@ class InvertedInteger:
                 print(pair)
                 
         return mult_non_commutative_pairs, add_non_commutative_pairs
+
+    # function to find associative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
+    def find_associative_pairs():
+        associative_pairs = []
+        
+        # checks for associative pairs between 1 and 50 adds them to a list
+        for n in range(1, 51):
+            for alpha in range(n):
+                if ac.has_associative_inverted_multiplication(n, alpha):
+                    associative_pairs.append((n, alpha))
+            print("These are the pairs for which associativity holds:")
+            for pair in associative_pairs:
+                print(pair)
+        return associative_pairs

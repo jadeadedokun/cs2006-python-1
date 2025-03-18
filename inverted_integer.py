@@ -19,18 +19,18 @@ class InvertedInteger:
         for result in list_of_results:
             print(result)
         
-# function to check that the modulus is above 0 and an integer    
+    # function to check that the modulus is above 0 and an integer
     @staticmethod
-    def _is_positive_modulus(a, b):
-        if a.modulus <= 0 or b.modulus <= 0:
-            raise ValueError("Modulus must be positive.")
+    def _is_positive_modulus(variable, other_variable):
+        if variable.modulus <= 0 or other_variable.modulus <= 0:
+            raise ValueError("The modulus must be a positive integer. Please try again.")
         return True
         
     # function to check that both x and y have an identical modulus and multiplier
     @staticmethod
-    def _is_same_modulus_and_multiplier(a, b):
-        if a.modulus != b.modulus or a.multiplier != b.multiplier:
-            raise ValueError("Operands must have the same modulus and multiplier.")
+    def _is_same_modulus_and_multiplier(variable, other_variable):
+        if not (variable.modulus == other_variable.modulus and variable.multiplier == other_variable.multiplier):
+            raise ValueError("The modulus and multiplier of both variables being operated on must be the same.")
         return True
         
          # function to allow the program to support addition

@@ -59,7 +59,7 @@ class InvertedInteger:
         self.print_values(idempotent_pairs)
         return idempotent_pairs
     
-
+    # helper function to identify pairs that satisfy a specified law
     def find_pairs(self, modulus, mult_checking_function, add_checking_function,property):
         multiplication_pairs = []
         addition_pairs = []
@@ -67,8 +67,10 @@ class InvertedInteger:
         add_all_hold = True
         checked_pairs = set()
 
+        # loops through from 1 to a specified value to identify which pairs satisfy the condition and adds them to a list
         for n in range(1, modulus+1):
             for alpha in range(n):
+                # ensures that pairs will not be re-checked with their reversed order
                 if (n, alpha) not in checked_pairs:
                     checked_pairs.add((n,alpha))
                     if mult_checking_function(n,alpha):
@@ -78,13 +80,14 @@ class InvertedInteger:
                         addition_pairs.append((n,alpha))
                     else: add_all_hold = False
 
+        # checks whether the law is satisfied for multiplication with all values and outputs specific pairs if not
         if (mult_all_hold):
             print(f"The {property} of multiplication holds for values between 1 and {modulus}.")
         else: 
             print(f"These are the pairs for which {property} multiplication holds:")
             self.print_values(multiplication_pairs)
 
-
+        # checks whether the law is satisfied for addition with all values and outputs specific pairs if not
         if (add_all_hold):
             print(f"The {property} of addition holds for values between 1 and {modulus}")
         else:
@@ -93,13 +96,10 @@ class InvertedInteger:
                 
         return multiplication_pairs, addition_pairs
 
-
-
     # function to find commutative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
     def find_commutative_pairs(self):
         return self.find_pairs(50,ac.has_commutative_multiplication,ac.has_commutative_addition,"commutative")
   
-
     # function to find associative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
     def find_associative_pairs(self):
         return self.find_pairs(20,ac.has_associative_inverted_multiplication,ac.has_associative_inverted_addition,"associative")

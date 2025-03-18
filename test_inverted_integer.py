@@ -22,7 +22,7 @@ print("\nIterating over Zn:")
 for x in zn:
     print(x)
 
-    print("\nTesting combinations of n and alpha for right distributivity:")
+print("\nTesting combinations of n and alpha for right distributivity:")
 for n in range(2, 20):
     for alpha in range(1, n):
         result = has_inverted_right_distributivity(n, alpha)

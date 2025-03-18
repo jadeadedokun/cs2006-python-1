@@ -53,3 +53,21 @@ def has_associative_inverted_addition(n,alpha):
                 if result1 != result2:
                     return False
     return True
+
+def has_inverted_right_distributivity(n, alpha):
+    """Check if (x ⊕ y) ⊗ z = (x ⊗ z) ⊕ (y ⊗ z) for all x, y, z ∈ Zn."""
+    for x in range(n):
+        for y in range(n):
+            for z in range(n):
+                # Compute (x ⊕ y) ⊗ z
+                left_add = (x - y) % n
+                left = (left_add + z - alpha * left_add * z) % n
+                
+                # Compute (x ⊗ z) ⊕ (y ⊗ z)
+                right_x = (x + z - alpha * x * z) % n
+                right_y = (y + z - alpha * y * z) % n
+                right = (right_x - right_y) % n
+                
+                if left != right:
+                    return False
+    return True

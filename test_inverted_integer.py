@@ -1,5 +1,5 @@
 # Test script
-from algebraic_calculations import has_inverted_right_distributivity, has_idempotent_property
+from algebraic_calculations import has_inverted_right_distributivity
 from inverted_integer import InvertedInteger, InvertedIntegers
 
 # Test right distributivity function
@@ -22,8 +22,8 @@ print("\nIterating over Zn:")
 for x in zn:
     print(x)
 
-print("\nTesting combinations of n and alpha for idempotency:")
+    print("\nTesting combinations of n and alpha for right distributivity:")
 for n in range(2, 20):
     for alpha in range(1, n):
-        result = has_idempotent_property(n, alpha)
+        result = has_inverted_right_distributivity(n, alpha)
         print(f"Distributivity for n={n}, alpha={alpha}: {result}")

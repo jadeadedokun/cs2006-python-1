@@ -1,9 +1,8 @@
 import algebraic_calculations as ac
 
 class InvertedInteger:
+        # function to define the components of the expression
     def __init__(self, obj, modulus, multiplier):
-        if modulus <= 0:
-            raise ValueError("Modulus must be positive.")
         self.modulus = modulus
          # reduces to ensure that both values are part of the set Zn
         self.object = obj % modulus 
@@ -33,7 +32,7 @@ class InvertedInteger:
             raise ValueError("The modulus and multiplier of both variables being operated on must be the same.")
         return True
         
-         # function to allow the program to support addition
+    # function to allow the program to support addition
     def __add__(self, other):
         if (self._is_positive_modulus(self, other) and self._is_same_modulus_and_multiplier(self, other)):
             result = InvertedInteger(((self.object - other.object) % self.modulus), self.modulus, self.multiplier)
@@ -47,21 +46,25 @@ class InvertedInteger:
             return result
         return None
         
-    # function to find idempotent pairs where modulus is between 1 and 50 and the multiplier is less than modulus
-    def find_idempotent_pairs(self):
-        idempotent_pairs = []
+    def find_pairs(self,modulus,property,checking_function):
+        pairs = []
+        all_hold = True
 
-        # checks for idempotent pairs between 1 and 50 adds them to a list
-        for n in range(1, 51):
+        for n in range(1,modulus+1):
             for alpha in range(n):
-                if ac.has_idempotent_property(n, alpha):
-                    idempotent_pairs.append((n, alpha))
-        print("These are the pairs for which idempotency holds:")
-        self.print_values(idempotent_pairs)
-        return idempotent_pairs
-    
+                if checking_function(n,alpha):
+                    pairs.append((n,alpha))
+                else: all_hold = False
+        if all_hold:
+            print(f"The law of {property} holds for values between 1 and {modulus}.")
+        else:
+            print(f"These are the pairs for which the law of {property} holds:")
+            self.print_values(pairs)
+            
+        return pairs
+        
     # helper function to identify pairs that satisfy a specified law
-    def find_pairs(self, modulus, mult_checking_function, add_checking_function,property):
+    def find_mult_and_add_pairs(self, modulus, mult_checking_function, add_checking_function,property):
         multiplication_pairs = []
         addition_pairs = []
         mult_all_hold = True
@@ -97,22 +100,21 @@ class InvertedInteger:
                 
         return multiplication_pairs, addition_pairs
     
+    # function to find idempotent pairs where modulus is between 1 and 50 and the multiplier is less than modulus
+    def find_idempotent_pairs(self):
+        return self.find_pairs(50,"idempotency",ac.has_idempotent_property)
+    
      # function to find commutative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
     def find_commutative_pairs(self):
-        return self.find_pairs(50,ac.has_commutative_multiplication,ac.has_commutative_addition,"commutative")
+        return self.find_mult_and_add_pairs(50,ac.has_commutative_multiplication,ac.has_commutative_addition,"commutative")
   
     # function to find associative pairs (for both operations) where modulus is between 1 and 50 and the multiplier is less than modulus
     def find_associative_pairs(self):
-        return self.find_pairs(20,ac.has_associative_inverted_multiplication,ac.has_associative_inverted_addition,"associative")
+        return self.find_mult_and_add_pairs(20,ac.has_associative_inverted_multiplication,ac.has_associative_inverted_addition,"associative")
 
+    """Find all pairs (n, α) where 1 ≤ n ≤ 20 and 0 ≤ α < n, and right distributivity holds."""
     def find_right_distributivity_pairs(self):
-        """Find all pairs (n, α) where 1 ≤ n ≤ 20 and 0 ≤ α < n, and right distributivity holds."""
-        distributivity_pairs = []
-        for n in range(1, 21):
-            for alpha in range(n):
-                if ac.has_inverted_right_distributivity(n, alpha):
-                    distributivity_pairs.append((n, alpha)) 
-            return distributivity_pairs
+            return self.find_pairs(20,"inverted right distributivity",ac.has_inverted_right_distributivity)
 
 class InvertedIntegers:
     def __init__(self, modulus, alpha):

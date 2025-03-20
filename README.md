@@ -8,7 +8,10 @@ This guide will help you get started with exploring inverted integers in Python.
 
 ### Dependencies
 
-No external dependencies are required. This module uses only the Python standard library.
+Apart from the Python standard library, this program requires for coverage to be installed by running the following line on the terminal:
+```
+pip3 install coverage
+```
 
 ### Loading the code
 
@@ -24,12 +27,12 @@ from inverted_integer import InvertedInteger
 For example:
 
 The following line creates an inverted integer with value 3, modulus 7, and multiplier 2
-```
+```python
 x = InvertedInteger(3, 7, 2)
 ```
 
 The following line creates another inverted integer with value 5, modulus 7, and multiplier 2
-```
+```python
 y = InvertedInteger(5, 7, 2)
 ```
 ## Actions - Printing an Object
@@ -38,13 +41,13 @@ y = InvertedInteger(5, 7, 2)
 For example:
 
 The following line prints the representation of x
-```
+```python
 print(x) 
 ```
 Using the object 'x' above, this line results in the output: **<3 mod 7 | 2 >**
 
 The following line prints the representation of y
-```
+```python
 print(y)  
 ```
 Using the object 'y' above, this line results in the output: **<5 mod 7 | 2 >**
@@ -55,7 +58,7 @@ Using the object 'y' above, this line results in the output: **<5 mod 7 | 2 >**
 For example:
 
 The following line multiplies the previously created x and y object by each other and prints the resulting value
-```
+```python
 print(x * y)
 ```
 
@@ -65,7 +68,7 @@ print(x * y)
 For example:
 
 The following line adds the previously created x and y object together and prints the resulting value
-```
+```python
 print(x + y)
 ```
 
@@ -75,7 +78,7 @@ print(x + y)
 For example: 
 
 The following line uses the previously created x object to call the function for determining idempotent pairs
-```
+```python
 x.find_idempotent_pairs()
 ```
 
@@ -86,7 +89,7 @@ x.find_idempotent_pairs()
 For example: 
 
 The following line uses the previously created x object to call the function for determining commutative pairs
-```
+```python
 x.find_commutative_pairs()
 ```
 
@@ -97,7 +100,7 @@ x.find_commutative_pairs()
 For example: 
 
 The following line uses the previously created x object to call the function for determining associative pairs
-```
+```python
 x.find_associative_pairs()
 ```
 
@@ -107,6 +110,6 @@ x.find_associative_pairs()
 For example: 
 
 The following line uses the previously created x object to call the function for determining inverted right distributivity pairs
-```
+```python
 x.find_right_distributivity_pairs()
 ```

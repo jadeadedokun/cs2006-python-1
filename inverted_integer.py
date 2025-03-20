@@ -3,6 +3,9 @@ import algebraic_calculations as ac
 class InvertedInteger:
         # function to define the components of the expression
     def __init__(self, obj, modulus, multiplier):
+        # ensures that an invalid modulus cannot be used to create an InvertedInteger object
+        if modulus <= 0:
+            raise ValueError("The modulus must be positive. Please try again.")
         self.modulus = modulus
          # reduces to ensure that both values are part of the set Zn
         self.object = obj % modulus 
@@ -54,14 +57,14 @@ class InvertedInteger:
         
     # function to allow the program to support addition
     def __add__(self, other):
-        if (self._is_positive_modulus(self, other) and self._is_same_modulus_and_multiplier(self, other)):
+        if (self._is_same_modulus_and_multiplier(self, other)):
             result = InvertedInteger(((self.object - other.object) % self.modulus), self.modulus, self.multiplier)
             return result
         return None
         
     # function to allow the program to support multiplication
     def __mul__(self, other):
-        if (self._is_positive_modulus(self, other) and self._is_same_modulus_and_multiplier(self, other)):
+        if (self._is_same_modulus_and_multiplier(self, other)):
             result = InvertedInteger((self.object + other.object - (self.multiplier * self.object * other.object)) % self.modulus, self.modulus, self.multiplier)
             return result
         return None

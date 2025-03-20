@@ -18,7 +18,7 @@ class TestInvertedRootsOfUnity(unittest.TestCase):
     def test_n5_alpha2(self):
         roots = ac.inverted_roots_of_unity(5, 2)
         self.assertEqual(roots, [2, 4])
-
+ 
     def test_n7_alpha3(self):
         roots = ac.inverted_roots_of_unity(7, 3)
         self.assertEqual(roots, [])

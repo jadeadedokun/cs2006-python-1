@@ -24,6 +24,26 @@ class InvertedInteger:
         if variable.modulus <= 0 or other_variable.modulus <= 0:
             raise ValueError("The modulus must be a positive integer. Please try again.")
         return True
+    
+
+    
+    # Analyze pairs (n, alpha) to find those with the most roots of unit
+    @staticmethod
+    def analyze_inverted_roots_of_unity(max_n=25):
+      """Find the maximal number of roots and corresponding (n, α) pairs."""
+      max_count = 0
+      max_pairs = []
+      for n in range(1, max_n + 1):
+        for alpha in range(n):
+            roots = ac.inverted_roots_of_unity(n, alpha)
+            count = len(roots)
+            if count > max_count:
+                max_count = count
+                max_pairs = [(n, alpha, roots)]
+            elif count == max_count and count > 0:
+                max_pairs.append((n, alpha, roots))
+      return max_count, max_pairs
+
         
     # function to check that both x and y have an identical modulus and multiplier
     @staticmethod
@@ -117,9 +137,9 @@ class InvertedInteger:
             return self.find_pairs(20,"inverted right distributivity",ac.has_inverted_right_distributivity)
 
 class InvertedIntegers:
-    def __init__(self, modulus, alpha):
+    def __init__(self, modulus: int, alpha:int):
         if modulus <= 0:
-            raise ValueError("Modulus must be positive.")
+          raise ValueError("Modulus must be positive. For n=1, use modulus=1.")
         self.modulus = modulus
         self.alpha = alpha % modulus
     
@@ -129,6 +149,10 @@ class InvertedIntegers:
     def size(self):
         return self.modulus
     
+  
     def __iter__(self):
+        """Yield elements on-the-fly instead of storing a list."""
         for x in range(self.modulus):
             yield InvertedInteger(x, self.modulus, self.alpha)
+
+  

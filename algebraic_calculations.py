@@ -71,3 +71,16 @@ def has_inverted_right_distributivity(n, alpha):
                 if left != right:
                     return False
     return True
+
+# Find x in Zn where x⊗x=1 for given n and alpha
+def inverted_roots_of_unity(n, alpha):
+    """Find all x ∈ Zn such that x⊗x = 1."""
+    roots = []
+    target = 1 % n
+    for x in range(n):
+        result = (2 * x - alpha * x * x) % n
+        if result == target:
+            roots.append(x)
+    return roots
+
+

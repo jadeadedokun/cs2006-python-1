@@ -1,3 +1,4 @@
+
 # Test script
 from algebraic_calculations import has_inverted_right_distributivity
 from inverted_integer import InvertedInteger, InvertedIntegers
@@ -27,3 +28,5 @@ for n in range(2, 20):
     for alpha in range(1, n):
         result = has_inverted_right_distributivity(n, alpha)
         print(f"Distributivity for n={n}, alpha={alpha}: {result}")
+
+

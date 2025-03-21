@@ -113,3 +113,53 @@ The following line uses the previously created x object to call the function for
 ```python
 x.find_right_distributivity_pairs()
 ```
+
+## Actions - Creating and Using InvertedIntegers
+### You can create an InvertedIntegers object that represents the entire set Zn with a specific modulus and multiplier.
+
+For example:
+
+The following line creates an InvertedIntegers object with modulus 5 and multiplier 2
+```python
+integers = InvertedIntegers(5, 2)
+```
+As above, you can print your InvertedIntegers objects to see their representation.
+
+For example:
+
+The following line prints the representation of the **x** object:
+```python
+print(integers)
+```
+Using the object 'integers' above, this line results in the output: **<Zn mod 5 | 2 >**
+
+## Actions - Getting the size of the set
+### You can determine how many elements are in the set using the size method:
+
+```python
+integers.size()
+print(size)
+```
+Using the object 'integers' above, this line results in the output: **5**
+
+## Actions - Iterating through all elements
+### You can iterate through all elements in the set Zn:
+
+```python
+for x in integers:
+    print(x)
+```
+This will print:
+<0 mod 5 | 2>
+<1 mod 5 | 2>
+<2 mod 5 | 2>
+<3 mod 5 | 2>
+<4 mod 5 | 2>
+
+## Actions - Running Tests
+### You can run the tests to verify that the implementation works correctly.
+
+To run the tests from the command line, enter the line:
+```bash
+./runTestsWithCoverage.sh
+```

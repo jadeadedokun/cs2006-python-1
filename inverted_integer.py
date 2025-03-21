@@ -20,15 +20,6 @@ class InvertedInteger:
     def print_values(list_of_results):
         for result in list_of_results:
             print(result)
-        
-    # function to check that the modulus is above 0 and an integer
-    @staticmethod
-    def _is_positive_modulus(variable, other_variable):
-        if variable.modulus <= 0 or other_variable.modulus <= 0:
-            raise ValueError("The modulus must be a positive integer. Please try again.")
-        return True
-    
-
     
     # Analyze pairs (n, alpha) to find those with the most roots of unit
     @staticmethod

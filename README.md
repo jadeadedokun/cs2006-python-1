@@ -150,10 +150,10 @@ for x in integers:
     print(x)
 ```
 This will print:
-<0 mod 5 | 2>
-<1 mod 5 | 2>
-<2 mod 5 | 2>
-<3 mod 5 | 2>
+<0 mod 5 | 2>\
+<1 mod 5 | 2>\
+<2 mod 5 | 2>\
+<3 mod 5 | 2>\
 <4 mod 5 | 2>
 
 ## Actions - Running Tests

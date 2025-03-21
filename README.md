@@ -157,9 +157,9 @@ This will print:
 <4 mod 5 | 2>
 
 ## Actions - Running Tests
-### You can run the tests to verify that the implementation works correctly.
+### You can run unit tests to verify that the implementation works correctly.
 
-To run the tests from the command line, enter the line:
+To run the tests from the command line:
 ```bash
 ./runTestsWithCoverage.sh
 ```

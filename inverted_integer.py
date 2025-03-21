@@ -21,6 +21,33 @@ class InvertedInteger:
         for result in list_of_results:
             print(result)
         
+    # function to check that the modulus is above 0 and an integer
+    @staticmethod
+    def _is_positive_modulus(variable, other_variable):
+        if variable.modulus <= 0 or other_variable.modulus <= 0:
+            raise ValueError("The modulus must be a positive integer. Please try again.")
+        return True
+    
+
+    
+    # Analyze pairs (n, alpha) to find those with the most roots of unit
+    @staticmethod
+    def analyze_inverted_roots_of_unity(max_n=25):
+      """Find the maximal number of roots and corresponding (n, α) pairs."""
+      max_count = 0
+      max_pairs = []
+      for n in range(1, max_n + 1):
+        for alpha in range(n):
+            roots = ac.inverted_roots_of_unity(n, alpha)
+            count = len(roots)
+            if count > max_count:
+                max_count = count
+                max_pairs = [(n, alpha, roots)]
+            elif count == max_count and count > 0:
+                max_pairs.append((n, alpha, roots))
+      return max_count, max_pairs
+
+        
     # function to check that both x and y have an identical modulus and multiplier
     @staticmethod
     def _is_same_modulus_and_multiplier(variable, other_variable):

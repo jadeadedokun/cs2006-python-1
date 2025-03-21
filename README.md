@@ -15,10 +15,10 @@ pip3 install coverage
 
 ### Loading the code
 
-To load the code in a Python interpreter, run the following line:
+To load the code in a Python interpreter, run the following line from the Code Directory:
 
 ```python
-python3 -i -c "from inverted_integer import InvertedInteger, InvertedIntegers; print('Python interpreter started with InvertedInteger and InvertedIntegers imported.')"
+python3 -i -c "from inverted_integer import InvertedInteger; from inverted_integers import InvertedIntegers; print('Python interpreter started with InvertedInteger and InvertedIntegers imported.')"
 ```
 
 ## Actions - Creating an Object

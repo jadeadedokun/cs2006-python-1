@@ -1,5 +1,22 @@
 def has_idempotent_property(n, alpha):
-    # function check for each value from 0 to the modulus with a fixed multiplier and modulus whether x multiplied by itself gives x
+    """
+    Function to check for each value from 0 to the modulus with a fixed multiplier and modulus whether x multiplied by itself gives x.
+    
+    Args:
+        n (int): The modulus 
+        alpha (int): The multiplier
+        
+    Returns:
+        bool: True if the property holds for all values, False otherwise
+        
+    Examples:
+        >>> has_idempotent_property(1, 0)
+        True
+        >>> has_idempotent_property(2, 1)
+        True
+        >>> has_idempotent_property(3, 1)
+        False
+    """
     for x in range(n):
         result = (x + x - alpha * x * x) % n
         if result != x:
@@ -7,7 +24,22 @@ def has_idempotent_property(n, alpha):
     return True
 
 def has_commutative_multiplication(n, alpha):
-    # function to check whether values hold the commutative value of multiplication
+    """
+    Function to check whether values hold the commutative value of multiplication.
+    
+    Args:
+        n (int): The modulus
+        alpha (int): The multiplier
+        
+    Returns:
+        bool: True if the multiplication is commutative, False otherwise
+        
+    Examples:
+        >>> has_commutative_multiplication(5, 2)
+        True
+        >>> has_commutative_multiplication(1, 0)
+        True
+    """
     for x in range(n):
         for y in range(n):
             result = (x + y - alpha * x * y) % n
@@ -16,6 +48,24 @@ def has_commutative_multiplication(n, alpha):
     return True
 
 def has_commutative_addition(n, alpha):
+    """
+    Function to check whether values hold the commutative value of addition.
+    
+    Args:
+        n (int): The modulus
+        alpha (int): The multiplier
+        
+    Returns:
+        bool: True if the addition is commutative, False otherwise
+        
+    Examples:
+        >>> has_commutative_addition(1, 0)
+        True
+        >>> has_commutative_addition(2, 0)
+        True
+        >>> has_commutative_addition(3, 0)
+        False
+    """
     # function to check whether values hold the commutative value of addition
     for x in range(n):
         for y in range(n):
@@ -25,6 +75,22 @@ def has_commutative_addition(n, alpha):
     return True
 
 def has_associative_inverted_multiplication(n,alpha):
+    """
+    Function to perform multiplication and check for associativity.
+    
+    Args:
+        n (int): The modulus
+        alpha (int): The multiplier
+        
+    Returns:
+        bool: True if multiplication is associative, False otherwise
+        
+    Examples:
+        >>> has_associative_inverted_multiplication(1, 0)
+        True
+        >>> has_associative_inverted_multiplication(2, 0)
+        True
+    """
     # function to perform multiplication and check for associativity
     for x in range(n):
         for y in range(n):
@@ -40,6 +106,24 @@ def has_associative_inverted_multiplication(n,alpha):
     return True
 
 def has_associative_inverted_addition(n,alpha):
+    """
+    Function to perform addition and check for associativity.
+    
+    Args:
+        n (int): The modulus
+        alpha (int): The multiplier
+        
+    Returns:
+        bool: True if addition is associative, False otherwise
+        
+    Examples:
+        >>> has_associative_inverted_addition(1, 0)
+        True
+        >>> has_associative_inverted_addition(2, 0)
+        True
+        >>> has_associative_inverted_addition(3, 0)
+        False
+    """
     # function to perform addition and check for associativity
     for x in range(n):
         for y in range(n):
@@ -55,7 +139,22 @@ def has_associative_inverted_addition(n,alpha):
     return True
 
 def has_inverted_right_distributivity(n, alpha):
-    """Check if (x ⊕ y) ⊗ z = (x ⊗ z) ⊕ (y ⊗ z) for all x, y, z ∈ Zn."""
+    """
+    Check if (x ⊕ y) ⊗ z = (x ⊗ z) ⊕ (y ⊗ z) for all x, y, z ∈ Zn.
+    
+    Args:
+        n (int): The modulus
+        alpha (int): The multiplier
+        
+    Returns:
+        bool: True if right distributivity holds, False otherwise
+        
+    Examples:
+        >>> has_inverted_right_distributivity(1, 0)
+        True
+        >>> has_inverted_right_distributivity(2, 0)
+        False
+    """
     for x in range(n):
         for y in range(n):
             for z in range(n):
@@ -74,7 +173,24 @@ def has_inverted_right_distributivity(n, alpha):
 
 # Find x in Zn where x⊗x=1 for given n and alpha
 def inverted_roots_of_unity(n, alpha):
-    """Find all x ∈ Zn such that x⊗x = 1."""
+    """
+    Find all x ∈ Zn such that x⊗x = 1.
+    
+    Args:
+        n (int): The modulus
+        alpha (int): The multiplier
+        
+    Returns:
+        list: List of values x where x⊗x = 1
+        
+    Examples:
+        >>> inverted_roots_of_unity(1, 0)
+        [0]
+        >>> inverted_roots_of_unity(2, 1)
+        [1]
+        >>> inverted_roots_of_unity(5, 2)
+        [2, 4]
+    """
     roots = []
     target = 1 % n
     for x in range(n):
@@ -82,5 +198,3 @@ def inverted_roots_of_unity(n, alpha):
         if result == target:
             roots.append(x)
     return roots
-
-

@@ -8,7 +8,7 @@ This guide will help you get started with exploring inverted integers in Python.
 
 ### Dependencies
 
-Apart from the Python standard library, this program requires for coverage to be installed by running the following line on the terminal:
+Apart from the Python standard library, this program requires for coverage to be installed for unit tests by running the following line on the terminal:
 ```
 pip3 install coverage
 ```
@@ -159,7 +159,7 @@ This will print:
 ## Actions - Running Tests
 ### You can run unit tests to verify that the implementation works correctly.
 
-To run the tests from the command line:
+To run the tests with coverage and also the doctests (for each individual file) from the command line:
 ```bash
 ./runTestsWithCoverage.sh
 ```

@@ -149,7 +149,7 @@ Using the object 'integers' above, this line results in the output: **5**
 for x in integers:
     print(x)
 ```
-This will print:
+This will print:\
 <0 mod 5 | 2>\
 <1 mod 5 | 2>\
 <2 mod 5 | 2>\

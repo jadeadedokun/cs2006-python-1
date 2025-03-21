@@ -1,11 +1,11 @@
-#!/bin/bash 
+#!/bin/bash
 # 230013682
 
+# Installs coverage
 pip3 install coverage
-from inverted_integer import InvertedInteger
 
-python3 test_for_algebraic_calculations.py
-python3 test_for_inverted_integer.py
-python3 test_for_inverted_integers.py
+# Runs specific unit tests with coverage
+coverage run -m unittest test_for_algebraic_calculations.py test_for_inverted_integer.py test_for_inverted_integers.py
 
+# Generates a coverage report
 coverage report

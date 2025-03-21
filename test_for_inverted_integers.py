@@ -1,5 +1,5 @@
 import unittest
-from inverted_integer import InvertedIntegers
+from inverted_integers import InvertedIntegers
 
 class TestInvertedIntegers(unittest.TestCase):
     # Test for creation of InvertedIntegers object
